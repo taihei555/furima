@@ -1,0 +1,27 @@
+.device-header
+  %h1
+    = link_to root_path, class: 'device-header__link' do
+      = image_tag 'logo/logo.png', alt: 'logo', class: 'device-header__link__image', height: '49', width: '185'
+
+
+%h2 Sign up
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "new-password"
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .actions
+    = f.submit "Sign up"
+= render "devise/shared/links"
